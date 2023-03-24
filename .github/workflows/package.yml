@@ -63,7 +63,7 @@ jobs:
             # (mac-os) Install hdf-4.2.15 from sources
             CIBW_BEFORE_ALL_MACOS: >
               conda config --set always_yes yes --set changeps1 no --set auto_update_conda no --set safety_checks disabled &&
-              conda install -q hdf4
+              conda install -q hdf4 &&
               export LD_LIBRARY_PATH=$CONDA/lib
             CIBW_BEFORE_ALL_WINDOWS: >
               conda config --set always_yes yes --set changeps1 no --set auto_update_conda no --set safety_checks disabled &&
