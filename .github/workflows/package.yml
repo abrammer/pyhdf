@@ -49,13 +49,7 @@ jobs:
             
             # (mac-os) Install hdf-4.2.15 from sources
             CIBW_BEFORE_ALL_MACOS: >
-              brew install ninja automake autoconf &&
-              cd /tmp &&
-              git clone --depth 1 --branch hdf-4_2_16 https://github.com/HDFGroup/hdf4.git &&
-              cd hdf4 && ls && pwd &&
-              ./autogen.sh &&
-              ./configure --enable-shared --disable-static --disable-fortran --disable-netcdf --enable-production --with-zlib --prefix=/usr/local &&
-              make install
+              brew tap osgeo/osgeo4mac && brew install osgeo-hdf4
             CIBW_BEFORE_ALL_WINDOWS: >
               conda config --set always_yes yes --set changeps1 no --set auto_update_conda no --set safety_checks disabled &&
               conda install -q hdf4
