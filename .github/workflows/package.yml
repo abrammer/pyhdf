@@ -12,7 +12,7 @@ jobs:
         strategy:
           fail-fast: true
           matrix:
-            os: [windows-latest, ubuntu-latest, macos-latest]
+            os: [macos-latest]
             cibw_archs: ["auto"]
         env:
           CIBW_SKIP: "*-musllinux_*"
@@ -53,6 +53,7 @@ jobs:
               brew install ninja &&
               cd /tmp &&
               git clone https://github.com/HDFGroup/hdf4.git &&
+              ls && pwd &&
               mkdir build && cd build &&
               ../hdf4/configure --enable-shared --disable-static --disable-fortran --disable-netcdf --enable-production --with-zlib --prefix=/usr/local &&
               make install
