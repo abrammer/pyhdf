@@ -46,11 +46,11 @@ jobs:
             
         - name: Install cibuildwheel
           run: |
-            python -m pip install cibuildwheel==2.3.1
+            $CONDA/bin/python -m pip install cibuildwheel==2.3.1
             
         - name: Build wheels
           run: |
-            python -m cibuildwheel --output-dir dist
+            $CONDA/bin/python -m cibuildwheel --output-dir dist
           env:
             CIBW_BUILD: '{cp,pp}3*'
             CIBW_MANYLINUX_X86_64_IMAGE: manylinux2014
