@@ -41,8 +41,10 @@ jobs:
         - name: Setup conda paths (mac os latest)
           if: matrix.os == 'macos-latest'
           run: |
+            echo "LD_LIBRARY_PATH=$CONDA/lib"
             echo "LIBRARY_DIRS=$CONDA/lib;$CONDA/bin" >> $env:GITHUB_ENV
             echo "INCLUDE_DIRS=$CONDA/include" >> $env:GITHUB_ENV
+            echo "LD_LIBRARY_PATH=$CONDA/lib" >> $env:GITHUB_ENV
             
         - name: Install cibuildwheel
           run: |
@@ -62,6 +64,7 @@ jobs:
             CIBW_BEFORE_ALL_MACOS: >
               conda config --set always_yes yes --set changeps1 no --set auto_update_conda no --set safety_checks disabled &&
               conda install -q hdf4
+              export LD_LIBRARY_PATH=$CONDA/lib
             CIBW_BEFORE_ALL_WINDOWS: >
               conda config --set always_yes yes --set changeps1 no --set auto_update_conda no --set safety_checks disabled &&
               conda install -q hdf4
