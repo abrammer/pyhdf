@@ -46,7 +46,6 @@ jobs:
             CIBW_BEFORE_ALL_LINUX: yum -y install epel-release hdf hdf-devel && ln -s /usr/lib64/hdf/lib* /usr/lib64/
             CIBW_ARCHS_LINUX: 'x86_64'  # restrict to 64bit builds
             CIBW_ARCHS_WINDOWS: 'AMD64'  # restrict to 64bit builds
-            CIBW_ARCHS_MACOS: "x86_64 universal2 arm64"
             
             # (mac-os) Install hdf-4.2.15 from sources
             CIBW_BEFORE_ALL_MACOS: >
