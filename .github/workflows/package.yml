@@ -34,14 +34,20 @@ jobs:
             echo "LIBRARY_DIRS=C:\Miniconda\Library\lib;C:\Miniconda\Library\bin" >> $env:GITHUB_ENV
             echo "INCLUDE_DIRS=C:\Miniconda\Library\include" >> $env:GITHUB_ENV
 
-        - name: Install cibuildwheel
-          run: |
-            python -m pip install cibuildwheel==2.3.1
-
         - name: Setup Miniconda
           if: matrix.os == 'macos-latest'
           uses: conda-incubator/setup-miniconda@v2.2.0
 
+        - name: Setup conda paths (mac os latest)
+          if: matrix.os == 'macos-latest'
+          run: |
+            echo "LIBRARY_DIRS=$CONDA/lib;$CONDA/bin" >> $env:GITHUB_ENV
+            echo "INCLUDE_DIRS=$CONDA/include" >> $env:GITHUB_ENV
+            
+        - name: Install cibuildwheel
+          run: |
+            python -m pip install cibuildwheel==2.3.1
+            
         - name: Build wheels
           run: |
             python -m cibuildwheel --output-dir dist
