@@ -50,7 +50,7 @@ jobs:
             
             # (mac-os) Install hdf-4.2.15 from sources
             CIBW_BEFORE_ALL_MACOS: >
-              brew install ninja automake autoconf libtool libtool-bin &&
+              brew install ninja automake autoconf &&
               cd /tmp &&
               git clone --depth 1 --branch hdf-4_2_16 https://github.com/HDFGroup/hdf4.git &&
               cd hdf4 && ls && pwd &&
