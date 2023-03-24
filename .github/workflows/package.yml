@@ -50,12 +50,12 @@ jobs:
             
             # (mac-os) Install hdf-4.2.15 from sources
             CIBW_BEFORE_ALL_MACOS: >
-              brew install ninja &&
+              brew install ninja automake autoconf libtool libtool-bin &&
               cd /tmp &&
               git clone --depth 1 --branch hdf-4_2_16 https://github.com/HDFGroup/hdf4.git &&
-              ls && pwd &&
-              mkdir build && cd build &&
-              ../hdf4/configure --enable-shared --disable-static --disable-fortran --disable-netcdf --enable-production --with-zlib --prefix=/usr/local &&
+              cd hdf4 && ls && pwd &&
+              ./autogen.sh &&
+              ./configure --enable-shared --disable-static --disable-fortran --disable-netcdf --enable-production --with-zlib --prefix=/usr/local &&
               make install
             CIBW_BEFORE_ALL_WINDOWS: >
               conda config --set always_yes yes --set changeps1 no --set auto_update_conda no --set safety_checks disabled &&
